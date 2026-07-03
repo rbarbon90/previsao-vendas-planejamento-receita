@@ -1,0 +1,28 @@
+{
+  "model": "WeekdayAverageBaseline",
+  "model_role": "baseline",
+  "validation_days": 16,
+  "train_end": "2017-07-30",
+  "validation_start": "2017-07-31",
+  "validation_end": "2017-08-15",
+  "rows_scored": 28512,
+  "series_scored": 1782,
+  "mae": 84.12161731504034,
+  "rmse": 302.7604528593629,
+  "rmsle": 0.54624768007765,
+  "smape": 0.47065068465436716,
+  "wape": 0.18007682098710814,
+  "bias": 0.01967481878975115,
+  "selected_by": "lowest_wape",
+  "baseline_model": "SeasonalNaiveBaseline",
+  "baseline_wape": 0.20665064328016533,
+  "wape_lift_vs_baseline": 0.12859298123272664,
+  "models_tested": 5,
+  "benchmark_models": [
+    "WeekdayAverageBaseline",
+    "SeasonalPromotionTrendForecaster",
+    "SeasonalNaiveBaseline",
+    "MovingAverageBaseline",
+    "LastValueBaseline"
+  ]
+}

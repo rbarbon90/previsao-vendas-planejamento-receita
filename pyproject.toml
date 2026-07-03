@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "previsao-vendas-planejamento-receita"
+version = "0.1.0"
+description = "Dashboard executivo em Dash para previsao de vendas e planejamento de receita."
+authors = ["Rafael Barbon"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "revenue_forecast_dashboard", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+dash = ">=2.18,<4.0"
+dash-iconify = ">=0.1.2,<0.2.0"
+gunicorn = ">=22,<24"
+kaggle = ">=1.6,<2.0"
+numpy = ">=1.26,<3.0"
+pandas = ">=2.2,<3.0"
+plotly = ">=5.24,<7.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8,<9"
+ruff = ">=0.5,<1.0"
+jupyterlab = ">=4.0,<5.0"
+ipykernel = ">=7.0,<8.0"
+
+[tool.poetry.scripts]
+dashboard-receita = "revenue_forecast_dashboard.app:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

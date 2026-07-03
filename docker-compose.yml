@@ -1,0 +1,38 @@
+services:
+  dashboard:
+    build:
+      context: .
+      args:
+        POETRY_INSTALL_FLAGS: --only main
+    ports:
+      - "8050:8050"
+    environment:
+      DASH_HOST: 0.0.0.0
+      DASH_PORT: 8050
+      STORE_SALES_DATA_DIR: /app/data/raw
+      KAGGLE_API_TOKEN: ${KAGGLE_API_TOKEN:-}
+    volumes:
+      - ./data/raw:/app/data/raw:ro
+
+  notebooks:
+    build:
+      context: .
+      args:
+        POETRY_INSTALL_FLAGS: --with dev
+    ports:
+      - "8888:8888"
+    environment:
+      STORE_SALES_DATA_DIR: /app/data/raw
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN:-receita}
+    volumes:
+      - .:/app
+      - ./data/raw:/app/data/raw:ro
+    command:
+      - jupyter
+      - lab
+      - --ip=0.0.0.0
+      - --port=8888
+      - --no-browser
+      - --allow-root
+      - --ServerApp.root_dir=/app
+      - --IdentityProvider.token=${JUPYTER_TOKEN:-receita}
